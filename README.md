@@ -2,7 +2,7 @@
 
 A full-stack web application for tracking job applications during your job search. Built with Next.js 16, TypeScript, Supabase, and Tailwind CSS.
 
-##  Features
+## Features
 
 - **User Authentication** - Secure signup/login with email and password
 - **Job Management** - Create, read, update, and delete job applications
@@ -12,7 +12,7 @@ A full-stack web application for tracking job applications during your job searc
 - **Responsive Design** - Fully functional on desktop, tablet, and mobile
 - **Data Persistence** - All data securely stored in Supabase PostgreSQL database
 
-##  Tech Stack
+## Tech Stack
 
 **Frontend:**
 
@@ -29,7 +29,7 @@ A full-stack web application for tracking job applications during your job searc
   - Row Level Security (RLS)
   - Real-time capabilities
 
-##  Architecture
+## Architecture
 
 This application demonstrates modern full-stack patterns:
 
@@ -39,7 +39,7 @@ This application demonstrates modern full-stack patterns:
 - **Row Level Security** - Database-level security ensures users only access their own data
 - **URL-based State** - Search and filter state in URL for shareability
 
-##  Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -123,40 +123,6 @@ This application demonstrates modern full-stack patterns:
    ```
 
    Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-## 📁 Project Structure
-
-```
-job-tracker/
-├── app/
-│   ├── actions/
-│   │   └── jobs.ts              # Server Actions for CRUD operations
-│   ├── auth/
-│   │   ├── callback/
-│   │   │   └── route.ts         # Auth callback handler
-│   │   └── login/
-│   │       └── page.tsx         # Login/signup page
-│   ├── dashboard/
-│   │   ├── components/
-│   │   │   ├── AddJobForm.tsx   # Create job form
-│   │   │   ├── EditJobForm.tsx  # Edit job form
-│   │   │   ├── JobCard.tsx      # Job display card
-│   │   │   ├── LogoutButton.tsx # Logout functionality
-│   │   │   ├── SearchBar.tsx    # Search input
-│   │   │   ├── StatusFilter.tsx # Status filter buttons
-│   │   │   └── StatsSection.tsx # Dashboard statistics
-│   │   ├── layout.tsx           # Protected route wrapper
-│   │   └── page.tsx             # Main dashboard
-│   ├── globals.css              # Global styles
-│   └── layout.tsx               # Root layout
-├── lib/
-│   └── supabase/
-│       ├── client.ts            # Browser Supabase client
-│       └── server.ts            # Server Supabase client
-├── types/
-│   └── database.ts              # TypeScript type definitions
-└── package.json
-```
 
 ## Security
 
