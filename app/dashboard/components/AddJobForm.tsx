@@ -4,8 +4,7 @@ import { useActionState } from 'react';
 import { createJob } from '@/app/actions/jobs';
 import { useEffect, useRef } from 'react';
 
-const initialState = {
-  error: null,
+const initialState: { error?: string; success: boolean } = {
   success: false,
 };
 
