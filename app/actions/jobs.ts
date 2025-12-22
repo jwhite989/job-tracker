@@ -4,7 +4,10 @@ import { createClient } from '@/lib/supabase/server';
 import { revalidatePath } from 'next/cache';
 import type { NewJobApplication } from '@/types/database';
 
-export async function createJob(prevState: any, formData: FormData) {
+export async function createJob(
+  prevState: { error?: string; success: boolean },
+  formData: FormData
+): Promise<{ error?: string; success: boolean }> {
   try {
     const supabase = await createClient();
 
@@ -12,7 +15,7 @@ export async function createJob(prevState: any, formData: FormData) {
       data: { user },
     } = await supabase.auth.getUser();
     if (!user) {
-      return { error: 'You must be logged in' };
+      return { error: 'You must be logged in', success: false };
     }
 
     const company = formData.get('company') as string;
@@ -25,7 +28,7 @@ export async function createJob(prevState: any, formData: FormData) {
     const notes = formData.get('notes') as string;
 
     if (!company || !position || !status || !applied_date) {
-      return { error: 'Please fill in all required fields' };
+      return { error: 'Please fill in all required fields', success: false };
     }
 
     const jobData: NewJobApplication = {
@@ -45,7 +48,7 @@ export async function createJob(prevState: any, formData: FormData) {
 
     if (insertError) {
       console.error('Insert error:', insertError);
-      return { error: 'Failed to create job application' };
+      return { error: 'Failed to create job application', success: false };
     }
 
     revalidatePath('/dashboard');
@@ -53,7 +56,7 @@ export async function createJob(prevState: any, formData: FormData) {
     return { success: true };
   } catch (error) {
     console.error('Create job error:', error);
-    return { error: 'An unexpected error occurred' };
+    return { error: 'An unexpected error occurred', success: false };
   }
 }
 
