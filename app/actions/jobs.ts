@@ -89,9 +89,9 @@ export async function fetchJobs() {
 
 export async function updateJob(
   jobId: string,
-  prevState: any,
+  prevState: { error?: string; success: boolean },
   formData: FormData
-) {
+): Promise<{ error?: string; success: boolean }> {
   try {
     const supabase = await createClient();
 
@@ -99,7 +99,7 @@ export async function updateJob(
       data: { user },
     } = await supabase.auth.getUser();
     if (!user) {
-      return { error: 'You must be logged in' };
+      return { error: 'You must be logged in', success: false };
     }
 
     const company = formData.get('company') as string;
@@ -112,7 +112,7 @@ export async function updateJob(
     const notes = formData.get('notes') as string;
 
     if (!company || !position || !status || !applied_date) {
-      return { error: 'Please fill in all required fields' };
+      return { error: 'Please fill in all required fields', success: false };
     }
 
     const jobData = {
@@ -134,14 +134,14 @@ export async function updateJob(
 
     if (updateError) {
       console.error('Update error:', updateError);
-      return { error: 'Failed to update job application' };
+      return { error: 'Failed to update job application', success: false };
     }
 
     revalidatePath('/dashboard');
     return { success: true };
   } catch (error) {
     console.error('Update job error:', error);
-    return { error: 'An unexpected error occurred' };
+    return { error: 'An unexpected error occurred', success: false };
   }
 }
 

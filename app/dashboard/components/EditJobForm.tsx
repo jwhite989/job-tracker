@@ -5,8 +5,7 @@ import { updateJob } from '@/app/actions/jobs';
 import type { JobApplication } from '@/types/database';
 import { useEffect } from 'react';
 
-const initialState = {
-  error: null,
+const initialState: { error?: string; success: boolean } = {
   success: false,
 };
 
