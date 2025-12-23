@@ -2,6 +2,10 @@
 
 A full-stack web application for tracking job applications during your job search. Built with Next.js 16, TypeScript, Supabase, and Tailwind CSS.
 
+## Live Demo
+
+https://job-tracker-one-wheat.vercel.app/
+
 ## Features
 
 - **User Authentication** - Secure signup/login with email and password
